@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugestões para a Empresa</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color:white;
+            color: black;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        header img {
+            max-height: 150px;
+        }
+        header h2 {
+            margin: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 40px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .container:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        select, input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 5px 0 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        select:focus, input:focus, textarea:focus {
+            border-color: rgba(0, 128, 0, 0.7);
+            box-shadow: 0 0 8px rgba(0, 128, 0, 0.5);
+        }
+        textarea {
+            min-height: 40px; /* Inicialmente com altura de 1 linha */
+            resize: vertical; /* Permite ajuste vertical */
+            overflow: hidden; /* Remove barra de rolagem */
+        }
+        button {
+            background-color: rgba(0, 128, 0, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        button:hover {
+            background-color: rgba(0, 128, 0, 1);
+            transform: scale(1.05);
+        }
+        .select-group {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .select-group > div {
+            flex: 1;
+            min-width: 250px;
+            margin-right: 20px;
+        }
+        .select-group > div:last-child {
+            margin-right: 0;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(0, 128, 0, 0.9);
+            color: white;
+        }
+        .delete-btn {
+            background-color: rgba(255, 0, 0, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .delete-btn:hover {
+            background-color: rgba(255, 0, 0, 1);
+            transform: scale(1.05);
+        }
+        .download-btn {
+            background-color: rgba(0, 128, 0, 0.9);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .download-btn:hover {
+            background-color: rgba(0, 128, 0, 1);
+            transform: scale(1.05);
+        }
+        /* Estilo para a escala de avaliação */
+        .rating-group {
+            margin-top: 25px;
+        }
+        .rating-label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        .rating-label-container {
+            display: flex;
+            align-items: center;
+        }
+        .rating-input {
+            display: none;
+        }
+        .rating-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: inline-block;
+            line-height: 30px;
+            text-align: center;
+            cursor: pointer;
+            margin: 0 2px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .rating-input:checked + .rating-circle {
+            background-color: rgba(0, 128, 0, 0.9);
+            border-color: rgba(0, 128, 0, 0.9);
+            color: white;
+        }
+        .justification {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .justification.required {
+            display: block;
+        }
+
+        /* Estilo para as perguntas Sim/Não */
+        .yes-no-group {
+            margin-top: 30px;
+        }
+        .yes-no-label {
+            font-weight: bold;
+            display: block;
+            margin-top: 20px;
+        }
+        .yes-no-label-container {
+            display: flex;
+            align-items: center;
+        }
+        .yes-no-input {
+            display: none;
+        }
+        .yes-no-circle {
+            width: 50px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+            display: inline-block;
+            line-height: 40px;
+            text-align: center;
+            cursor: pointer;
+            margin: 0 2px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        .yes-no-input:checked + .yes-no-circle {
+            background-color: rgba(0, 128, 0, 0.9);
+            border-color: rgba(0, 128, 0, 0.9);
+            color: white;
+        }
+
+        /* Estilo para o overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            display: none; /* Inicialmente oculto */
+        }
+
+/* Pop-up de confirmação */
+.popup {
+    background-color: white;
+    border: 2px solid #000;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    opacity: 0.8; /* Ajusta a opacidade para 80% de visibilidade */
+display: none; /* Inicialmente oculto */
+}
+
+/* Fundo escuro atrás da pop-up */
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://plasbritos.pt/wp-content/uploads/2024/07/Plasbritos_30_Anos_page-0001-removebg-preview.png" alt="Logotipo da Empresa">
+        <h2>Sugestões para a Empresa</h2>
+    </header>
+
+     
+    <div class="container">
+        <form id="feedbackForm" action="https://formspree.io/f/xpwanlbd" method="POST">
+            <label for="nome">Nome:</label>
+            <select id="nome" name="nome">
+                <option value=""selected>Escolher (opcional)</option>
+                <option value="Marcelina Faria">Marcelina Faria</option>
+                <option value="Carlos Silva">Carlos Silva</option>
+                <option value="Antonino Faria">Antonino Faria</option>
+                <option value="Paulo Faria">Paulo Faria</option>
+                <option value="Isabel Vale">Isabel Vale</option>
+                <option value="Ivan Lysyi">Ivan Lysyi</option>
+                <option value="José Lamela">José Lamela</option>
+                <option value="André Duarte">André Duarte</option>
+                <option value="Sérgio Araújo">Sérgio Araújo</option>
+                <option value="Bruno Andrade">Bruno Andrade</option>
+                <option value="Tiago Ferreira">Tiago Ferreira</option>
+                <option value="Nelson Silva">Nelson Silva</option>
+                <option value="João Cunha">João Cunha</option>
+                <option value="Filipe Silva">Filipe Silva</option>
+                <option value="Tiago Silva">Tiago Silva</option>
+                <option value="Rui Ventura">Rui Ventura</option>
+                <option value="Joel Araújo">Joel Araújo</option>
+                <option value="Francisco Costa">Francisco Costa</option>
+                <option value="Joel Silva">Joel Silva</option>
+                <option value="Pedro Cortez">Pedro Cortez</option>
+                <option value="Manuel Silva">Manuel Silva</option>
+                <option value="Hélder Pereira">Hélder Pereira</option>
+                <option value="Diogo Loureiro">Diogo Loureiro</option>
+            </select>
+
+            <label for="setor">Setor:</label>
+            <select id="setor" name="setor" required>
+                <option value="" disabled selected>Escolher um setor</option>
+                <option value="Impressão/Bobinagem">Impressão/Bobinagem</option>
+                <option value="Corte">Corte</option>
+            </select>
+
+                <div class="rating-group">
+                    <span class="rating-label">Qual é o teu nível de satisfação geral com a empresa? (0 = nada satisfeito, 10 = muito satisfeito) :</span>
+                    <div class="rating-label-container">
+                        <!-- Limpeza -->
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-0" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="0" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-0" class="rating-circle">0</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-1" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="1" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-1" class="rating-circle">1</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-2" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="2" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-2" class="rating-circle">2</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-3" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="3" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-3" class="rating-circle">3</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-4" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="4" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-4" class="rating-circle">4</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-5" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="5" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-5" class="rating-circle">5</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-6" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="6" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-6" class="rating-circle">6</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-7" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="7" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-7" class="rating-circle">7</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-8" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="8" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-8" class="rating-circle">8</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-9" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="9" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-9" class="rating-circle">9</label>
+                        <input id="Qual é o teu nível de satisfação geral com a empresa?-10" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="10" class="rating-input">
+                        <label for="Qual é o teu nível de satisfação geral com a empresa?-10" class="rating-circle">10</label>
+                    </div>
+                    <textarea id="justificacao-Qual é o teu nível de satisfação geral com a empresa?" class="justification" placeholder="Justifica a tua nota abaixo..."></textarea>
+                </div>
+
+                <div class="rating-group">
+                    <span class="rating-label">O quanto sentes que a tua opinião é levada em conta? (0 = nada satisfeito, 10 = muito satisfeito)</span>
+                    <div class="rating-label-container">
+                        <!-- Organização -->
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-0" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="0" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-0" class="rating-circle">0</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-1" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="1" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-1" class="rating-circle">1</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-2" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="2" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-2" class="rating-circle">2</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-3" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="3" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-3" class="rating-circle">3</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-4" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="4" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-4" class="rating-circle">4</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-5" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="5" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-5" class="rating-circle">5</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-6" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="6" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-6" class="rating-circle">6</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-7" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="7" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-7" class="rating-circle">7</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-8" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="8" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-8" class="rating-circle">8</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-9" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="9" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-9" class="rating-circle">9</label>
+                        <input id="O quanto sentes que a tua opinião é levada em conta?-10" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="10" class="rating-input">
+                        <label for="O quanto sentes que a tua opinião é levada em conta?-10" class="rating-circle">10</label>
+                    </div>
+                    <textarea id="justificacao-O quanto sentes que a tua opinião é levada em conta?" class="justification" placeholder="Justifica a tua nota abaixo..."></textarea>
+                </div>
+
+                <div class="rating-group">
+                    <span class="rating-label">Qual é a tua satisfação com a higiene? (0 = nada satisfeito, 10 = muito satisfeito)</span>
+                    <div class="rating-label-container">
+                        <!-- Ambiente -->
+                        <input id="Qual é a tua satisfação com a higiene?-0" name="Qual é a tua satisfação com a higiene?" type="radio" value="0" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-0" class="rating-circle">0</label>
+                        <input id="Qual é a tua satisfação com a higiene?-1" name="Qual é a tua satisfação com a higiene?" type="radio" value="1" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-1" class="rating-circle">1</label>
+                        <input id="Qual é a tua satisfação com a higiene?-2" name="Qual é a tua satisfação com a higiene?" type="radio" value="2" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-2" class="rating-circle">2</label>
+                        <input id="Qual é a tua satisfação com a higiene?-3" name="Qual é a tua satisfação com a higiene?" type="radio" value="3" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-3" class="rating-circle">3</label>
+                        <input id="Qual é a tua satisfação com a higiene?-4" name="Qual é a tua satisfação com a higiene?" type="radio" value="4" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-4" class="rating-circle">4</label>
+                        <input id="Qual é a tua satisfação com a higiene?-5" name="Qual é a tua satisfação com a higiene?" type="radio" value="5" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-5" class="rating-circle">5</label>
+                        <input id="Qual é a tua satisfação com a higiene?-6" name="Qual é a tua satisfação com a higiene?" type="radio" value="6" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-6" class="rating-circle">6</label>
+                        <input id="Qual é a tua satisfação com a higiene?-7" name="Qual é a tua satisfação com a higiene?" type="radio" value="7" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-7" class="rating-circle">7</label>
+                        <input id="Qual é a tua satisfação com a higiene?-8" name="Qual é a tua satisfação com a higiene?" type="radio" value="8" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-8" class="rating-circle">8</label>
+                        <input id="Qual é a tua satisfação com a higiene?-9" name="Qual é a tua satisfação com a higiene?" type="radio" value="9" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-9" class="rating-circle">9</label>
+                        <input id="Qual é a tua satisfação com a higiene?-10" name="Qual é a tua satisfação com a higiene?" type="radio" value="10" class="rating-input">
+                        <label for="Qual é a tua satisfação com a higiene?-10" class="rating-circle">10</label>
+                    </div>
+                    <textarea id="justificacao-Qual é a tua satisfação com a higiene?" class="justification" placeholder="Justifica a tua nota abaixo..."></textarea>
+                </div>
+
+        <!-- Perguntas Sim/Não -->
+        <div class="yes-no-group">
+            <span class="yes-no-label">Estás satisfeito com o ambiente de trabalho?</span>
+            <div class="yes-no-label-container">
+                <input id="Estás satisfeito com o ambiente de trabalho?-sim" name="Estás satisfeito com o ambiente de trabalho?" type="radio" value="sim" class="yes-no-input">
+                <label for="Estás satisfeito com o ambiente de trabalho?-sim" class="yes-no-circle">Sim</label>
+                <input id="Estás satisfeito com o ambiente de trabalho?-nao" name="Estás satisfeito com o ambiente de trabalho?" type="radio" value="nao" class="yes-no-input">
+                <label for="Estás satisfeito com o ambiente de trabalho?-nao" class="yes-no-circle">Não</label>
+            </div>
+        </div>
+
+        <div class="yes-no-group">
+            <span class="yes-no-label">Sentes que há um bom espírito de equipa entre os colegas?</span>
+            <div class="yes-no-label-container">
+                <input id="Sentes que há um bom espírito de equipa entre os colegas?-sim" name="Sentes que há um bom espírito de equipa entre os colegas?" type="radio" value="sim" class="yes-no-input">
+                <label for="Sentes que há um bom espírito de equipa entre os colegas?-sim" class="yes-no-circle">Sim</label>
+                <input id="Sentes que há um bom espírito de equipa entre os colegas?-nao" name="Sentes que há um bom espírito de equipa entre os colegas?" type="radio" value="nao" class="yes-no-input">
+                <label for="Sentes que há um bom espírito de equipa entre os colegas?-nao" class="yes-no-circle">Não</label>
+            </div>
+        </div>
+
+        <div class="yes-no-group">
+            <span class="yes-no-label">Estás satisfeito com as condições de segurança no local de trabalho? </span>
+            <div class="yes-no-label-container">
+                <input id="Estás satisfeito com as condições de segurança no local de trabalho?-sim" name="Estás satisfeito com as condições de segurança no local de trabalho?" type="radio" value="sim" class="yes-no-input">
+                <label for="Estás satisfeito com as condições de segurança no local de trabalho?-sim" class="yes-no-circle">Sim</label>
+                <input id="Estás satisfeito com as condições de segurança no local de trabalho?-nao" name="Estás satisfeito com as condições de segurança no local de trabalho?" type="radio" value="nao" class="yes-no-input">
+                <label for="Estás satisfeito com as condições de segurança no local de trabalho?-nao" class="yes-no-circle">Não</label>
+            </div>
+        </div>
+
+        <div class="yes-no-group">
+            <span class="yes-no-label">Recebeste formação adequada para desempenhar as tuas funções?</span>
+            <div class="yes-no-label-container">
+                <input id="Recebeste formação adequada para desempenhar as tuas funções?-sim" name="Recebeste formação adequada para desempenhar as tuas funções?" type="radio" value="sim" class="yes-no-input">
+                <label for="Recebeste formação adequada para desempenhar as tuas funções?-sim" class="yes-no-circle">Sim</label>
+                <input id="Recebeste formação adequada para desempenhar as tuas funções?-nao" name="Recebeste formação adequada para desempenhar as tuas funções?" type="radio" value="nao" class="yes-no-input">
+                <label for="Recebeste formação adequada para desempenhar as tuas funções?-nao" class="yes-no-circle">Não</label>
+            </div>
+        </div>
+
+                <label for="sugestao">Sugestão:</label>
+                <textarea id="sugestao" name="sugestao" rows="5" placeholder="Escreve aqui qualquer sugestão ou comentário adicional..." required></textarea>
+
+                <div class="error-message" id="error-message">Por favor, responde a todas as perguntas.</div>
+
+            <button type="submit">Enviar Sugestão</button>
+        </form>
+    </div>
+
+    <!-- Pop-up de confirmação -->
+    <div class="overlay" id="overlay"></div>
+    <div class="popup" id="popup">
+        <img src="https://plasbritos.pt/wp-content/uploads/2019/04/logo.png" alt="Logo Plasbritos">
+        <p>Formulário enviado com sucesso!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+
+    <script>
+        document.querySelectorAll('.rating-input').forEach(input => {
+            input.addEventListener('change', (event) => {
+                const ratingValue = event.target.value;
+                const relatedTextareaId = 'justificacao-' + event.target.name;
+                const relatedTextarea = document.getElementById(relatedTextareaId);
+                
+                if (ratingValue < 5) {
+                    relatedTextarea.classList.add('required');
+                } else {
+                    relatedTextarea.classList.remove('required');
+                    relatedTextarea.value = ''; // Clear justification if not needed
+                }
+            });
+        });
+
+    function handleSubmit(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário e redirecionamento
+
+        const form = document.getElementById('feedbackForm');
+        const formData = new FormData(form);
+
+        // Enviar o formulário manualmente usando fetch
+        fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // Mostrar o pop-up após o envio bem-sucedido
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('popup').style.display = 'block';
+                
+                // Limpar o formulário
+                form.reset();
+            } else {
+                alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+            }
+        }).catch(error => {
+            alert('Ocorreu um erro ao enviar o formulário. Tente novamente.');
+        });
+    }
+
+    // Associa o evento de submit do formulário à função handleSubmit
+    document.getElementById('feedbackForm').addEventListener('submit', handleSubmit);
+
+    function closePopup() {
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('popup').style.display = 'none';
+        // Recarregar a página para que outra pessoa possa preencher o formulário
+        window.location.reload();
+    }
+    </script>
+</body>
+</html>
