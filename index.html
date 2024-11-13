@@ -416,8 +416,10 @@ display: none; /* Inicialmente oculto */
                 <input id="Recomendarias alguém para trabalhar na Plasbritos?-nao" name="Recomendarias alguém para trabalhar na Plasbritos?" type="radio" value="nao" class="yes-no-input">
                 <label for="Recomendarias alguém para trabalhar na Plasbritos?-nao" class="yes-no-circle">Não</label>
             </div>
-        </div>            
-
+        </div> 
+                    <textarea id="justificacao-Recomendarias alguém para trabalhar na Plasbritos?" class="justification" placeholder="Qual é o motivo?"></textarea>
+                </div>
+    
         <div class="yes-no-group">
             <span class="yes-no-label">Sentes que há um bom espírito de equipa entre os colegas?</span>
             <div class="yes-no-label-container">
@@ -427,7 +429,9 @@ display: none; /* Inicialmente oculto */
                 <label for="Sentes que há um bom espírito de equipa entre os colegas?-nao" class="yes-no-circle">Não</label>
             </div>
         </div>
-
+                    <textarea id="justificacao-Sentes que há um bom espírito de equipa entre os colegas?" class="justification" placeholder="Qual é o motivo?"></textarea>
+                </div>
+    
         <div class="yes-no-group">
             <span class="yes-no-label">Estás satisfeito com as condições de segurança no local de trabalho? </span>
             <div class="yes-no-label-container">
@@ -437,7 +441,9 @@ display: none; /* Inicialmente oculto */
                 <label for="Estás satisfeito com as condições de segurança no local de trabalho?-nao" class="yes-no-circle">Não</label>
             </div>
         </div>
-
+                    <textarea id="justificacao-Estás satisfeito com as condições de segurança no local de trabalho?" class="justification" placeholder="Qual é o motivo?"></textarea>
+                </div>
+    
         <div class="yes-no-group">
             <span class="yes-no-label">Recebeste formação adequada para desempenhar as tuas funções?</span>
             <div class="yes-no-label-container">
@@ -448,6 +454,18 @@ display: none; /* Inicialmente oculto */
             </div>
         </div>
 
+        <div class="yes-no-group">
+            <span class="yes-no-label">Houve alguma falha ou problema no último ano?</span>
+            <div class="yes-no-label-container">
+                <input id="Houve alguma falha ou problema no último ano?-sim" name="Houve alguma falha ou problema no último ano?" type="radio" value="sim" class="yes-no-input">
+                <label for="Houve alguma falha ou problema no último ano?-sim" class="yes-no-circle">Sim</label>
+                <input id="Houve alguma falha ou problema no último ano?-nao" name="Houve alguma falha ou problema no último anos?" type="radio" value="nao" class="yes-no-input">
+                <label for="Houve alguma falha ou problema no último ano?-nao" class="yes-no-circle">Não</label>
+            </div>
+        </div>  
+                    <textarea id="justificacao-Houve alguma falha ou problema no último ano?" class="justification" placeholder="Porque razão ocorreram e o que podemos fazer para evitar problemas semelhantes?"></textarea>
+                </div>
+    
                 <label for="sugestao">Sugestão:</label>
                 <textarea id="sugestao" name="sugestao" rows="5" placeholder="Escreve aqui qualquer sugestão ou comentário adicional..." required></textarea>
 
@@ -478,6 +496,17 @@ display: none; /* Inicialmente oculto */
                     relatedTextarea.classList.remove('required');
                     relatedTextarea.value = ''; // Clear justification if not needed
                 }
+        document.querySelectorAll('.yes-no-input').forEach(input => {
+            input.addEventListener('change', (event) => {
+                const ratingValue = event.target.value;
+                const relatedTextareaId = 'justificacao-' + event.target.name;
+                const relatedTextarea = document.getElementById(relatedTextareaId);
+                
+                if (ratingValue < não) {
+                    relatedTextarea.classList.add('required');
+                } else {
+                    relatedTextarea.classList.remove('required');
+                    relatedTextarea.value = ''; // Clear justification if not needed
             });
         });
 
