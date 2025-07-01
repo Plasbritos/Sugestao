@@ -289,11 +289,13 @@
                 <option value="" disabled selected>Escolher um setor</option>
                 <option value="Impressão/Bobinagem">Impressão/Bobinagem</option>
                 <option value="Corte">Corte</option>
+                <option value="Comercial">Comercial</option>
+                <option value="Administrativo">Administrativo</option>
             </select>
 
                 <div class="rating-group">
                     <span class="rating-label">Qual é o teu nível de satisfação geral com a empresa? (0 = nada satisfeito, 10 = muito satisfeito)</span>
-                    <div class="rating-label-container">
+                    <div class="rating-label-container" required>
                         <!-- Limpeza -->
                         <input id="Qual é o teu nível de satisfação geral com a empresa?-0" name="Qual é o teu nível de satisfação geral com a empresa?" type="radio" value="0" class="rating-input">
                         <label for="Qual é o teu nível de satisfação geral com a empresa?-0" class="rating-circle">0</label>
@@ -323,7 +325,7 @@
 
                 <div class="rating-group">
                     <span class="rating-label">O quanto sentes que a tua opinião é levada em conta? (0 = nada satisfeito, 10 = muito satisfeito)</span>
-                    <div class="rating-label-container">
+                    <div class="rating-label-container" required>
                         <!-- Organização -->
                         <input id="O quanto sentes que a tua opinião é levada em conta?-0" name="O quanto sentes que a tua opinião é levada em conta?" type="radio" value="0" class="rating-input">
                         <label for="O quanto sentes que a tua opinião é levada em conta?-0" class="rating-circle">0</label>
@@ -353,7 +355,7 @@
 
                 <div class="rating-group">
                     <span class="rating-label">Qual é a tua satisfação com a higiene? (0 = nada satisfeito, 10 = muito satisfeito)</span>
-                    <div class="rating-label-container">
+                    <div class="rating-label-container" required>
                         <!-- Ambiente -->
                         <input id="Qual é a tua satisfação com a higiene?-0" name="Qual é a tua satisfação com a higiene?" type="radio" value="0" class="rating-input">
                         <label for="Qual é a tua satisfação com a higiene?-0" class="rating-circle">0</label>
@@ -384,7 +386,7 @@
         <!-- Perguntas Sim/Não -->
         <div class="yes-no-group">
             <span class="yes-no-label">Estás satisfeito com o ambiente de trabalho?</span>
-            <div class="yes-no-label-container">
+            <div class="yes-no-label-container" required>
                 <input id="Estás satisfeito com o ambiente de trabalho?-sim" name="Estás satisfeito com o ambiente de trabalho?" type="radio" value="sim" class="yes-no-input">
                 <label for="Estás satisfeito com o ambiente de trabalho?-sim" class="yes-no-icon">
                     <img src="https://cdn-icons-png.flaticon.com/128/3161/3161410.png" alt="Sim" width="24" height="24">
@@ -410,7 +412,7 @@
         </div> 
         <div class="yes-no-group">
             <span class="yes-no-label">Sentes que há um bom espírito de equipa entre os colegas?</span>
-            <div class="yes-no-label-container">
+            <div class="yes-no-label-container" required>
                 <input id="Sentes que há um bom espírito de equipa entre os colegas?-sim" name="Sentes que há um bom espírito de equipa entre os colegas?" type="radio" value="sim" class="yes-no-input">
                 <label for="Sentes que há um bom espírito de equipa entre os colegas?-sim" class="yes-no-icon">
                     <img src="https://cdn-icons-png.flaticon.com/128/3161/3161410.png" alt="Sim" width="24" height="24">
@@ -423,7 +425,7 @@
         </div>
         <div class="yes-no-group">
             <span class="yes-no-label">Estás satisfeito com as condições de segurança no local de trabalho? </span>
-            <div class="yes-no-label-container">
+            <div class="yes-no-label-container" required>
                 <input id="Estás satisfeito com as condições de segurança no local de trabalho?-sim" name="Estás satisfeito com as condições de segurança no local de trabalho?" type="radio" value="sim" class="yes-no-input">
                 <label for="Estás satisfeito com as condições de segurança no local de trabalho?-sim" class="yes-no-icon">
                     <img src="https://cdn-icons-png.flaticon.com/128/3161/3161410.png" alt="Sim" width="24" height="24">
@@ -435,7 +437,7 @@
             </div>
         <div class="yes-no-group">
             <span class="yes-no-label">Houve alguma falha ou problema no último ano? </span>
-            <div class="yes-no-label-container">
+            <div class="yes-no-label-container" required>
                 <input id="Houve alguma falha ou problema no último ano?-sim" name="Houve alguma falha ou problema no último ano?" type="radio" value="sim" class="yes-no-input">
                 <label for="Houve alguma falha ou problema no último ano?-sim" class="yes-no-icon">
                 <img src="https://cdn-icons-png.flaticon.com/128/3161/3161410.png" alt="Sim" width="24" height="24">
@@ -448,7 +450,7 @@
         </div>
         <div class="yes-no-group">
             <span class="yes-no-label">Recebeste formação adequada para desempenhar as tuas funções?</span>
-            <div class="yes-no-label-container">
+            <div class="yes-no-label-container" required>
                 <input id="Recebeste formação adequada para desempenhar as tuas funções?-sim" name="Recebeste formação adequada para desempenhar as tuas funções?" type="radio" value="sim" class="yes-no-input">
                 <label for="Recebeste formação adequada para desempenhar as tuas funções?-sim" class="yes-no-icon">
                     <img src="https://cdn-icons-png.flaticon.com/128/3161/3161410.png" alt="Sim" width="24" height="24">
